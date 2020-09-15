@@ -1,5 +1,6 @@
 import React,{useState} from 'react';
 
+
 function ProductSelect(props) {
     const phoneNumberArray = [
         {id : 1 , phone : "09331520933" },
@@ -9,6 +10,7 @@ function ProductSelect(props) {
         {id : 5 , phone : "09337890843" },
     ]
     const [PhoneNumber,setPhoneNumber] = useState(phoneNumberArray);
+    //the function for render phone number list to this steps
     const renderPhoneNumberList = (arrayNumber)=>{
         return arrayNumber.map(phoneItem => {
             return <li>
@@ -19,6 +21,7 @@ function ProductSelect(props) {
           </li>
         });
     }
+    // this function for search phone Number in array 
     const searchPhoneNumber = (event) =>{
         let input = event.target;
         let newArrayPhone =[];

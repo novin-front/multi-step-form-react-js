@@ -6,6 +6,7 @@ import Registration from './FormSteps/Registration';
 import Logistic from './FormSteps/Logistic';
 
 function FormWrapper(props) {
+    // state for forms steps and component steps
      const [ContentSteps,setContentSteps]= useState({
         progress : 1,
          Steps :[
@@ -15,7 +16,7 @@ function FormWrapper(props) {
              {id : 4,component:<Pyment key={4}/>}
             ],
     });
-
+    // function for return now steps  
     const setFormSteps = (key)=>{
         const {Steps} = ContentSteps;
         return Steps.map((step)=>{
@@ -24,6 +25,7 @@ function FormWrapper(props) {
             }
         });
     }
+    // set nav steps in form 
     const setProgressBar = (nowStep,key) =>{
         let newStep;
         if(key === "next" && (nowStep+1) < 5){
@@ -40,6 +42,7 @@ function FormWrapper(props) {
         })
        }
     }
+    // function for render button forms 
     const creatBtnForms = (nowStep)=>{
         let btnObjects = {
                 prev :<button type="button" className="btn btn-custom" onClick={e=>{setProgressBar(ContentSteps.progress,"prev")}}>back</button>,
