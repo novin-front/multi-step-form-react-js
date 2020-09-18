@@ -15,22 +15,32 @@ function FormWrapper(props) {
                 }
             })
         }
-        console.log("stepValidation",valid);
 
+    }
+    const getStepData = (valid,data) => {
+        setContentSteps(prevState => {
+            return {
+                ...prevState,
+                formData : data,
+                setpsIsValid: valid,
+            }
+        })
     }
     // state for forms steps and component steps
      const [ContentSteps,setContentSteps]= useState({
         progress : 1,
          title: "Product Select",
+         setpsIsValid: false,
+         formData: {},
          Steps :[
-             { id: 1, component: <ProductSelect key={1} validation={stepValidation} />,title :"Product Select"},
-             { id: 2, component: <Registration key={2} validation={stepValidation} />, title : "Registration"},
-             { id: 3, component: <Logistic key={3} validation={stepValidation} />, title: "Logistic"},
-             { id: 4, component: <Pyment key={4} validation={stepValidation} />, title: "pymeny"}
+             { id: 1, component: <ProductSelect key={1} validation={stepValidation} getData={getStepData}  />,title :"Product Select"},
+             { id: 2, component: <Registration key={2} validation={stepValidation} getData={getStepData}  />, title : "Registration"},
+             { id: 3, component: <Logistic key={3} validation={stepValidation} getData={getStepData}  />, title: "Logistic"},
+             { id: 4, component: <Pyment key={4} validation={stepValidation} getData={getStepData}  />, title: "pymeny"}
             ],
-        setpsIsValid : true,
+        
     });
-    
+   
     // function for return now steps  
     const setFormSteps = (key)=>{
         const {Steps} = ContentSteps;
@@ -57,7 +67,10 @@ function FormWrapper(props) {
                 
             }
         });
+        
+
        if(newStep !== undefined){
+
            if (ContentSteps.setpsIsValid){
                setContentSteps((prevState )=>{
                     return {...prevState,
@@ -96,12 +109,11 @@ function FormWrapper(props) {
     }
     return (
         <>
-            <Formheader steps={{ steps: ContentSteps.progress, title: ContentSteps.title}}/>
+        <Formheader steps={{ steps: ContentSteps.progress, title: ContentSteps.title}}/>
           <form>
               
           <div className="container-row">
                 <div className="card-box">
-                    {console.log(ContentSteps)}
                    {setFormSteps(ContentSteps.progress)}
                 </div>
           </div>

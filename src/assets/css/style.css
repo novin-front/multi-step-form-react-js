@@ -136,7 +136,7 @@ table {
 }
 
 body {
-    background: #eee;
+    background: #efeff4;
     line-height: 1;
     font-family: 'IRANSANS', 'yekan', "Roboto", sans-serif, 'Arial' !important;
 }
@@ -160,7 +160,7 @@ body {
     content: "";
     height: 3px;
     width: 100%;
-    background-color: #cccccc;
+    background-color: #c7c7cc;
     position: absolute;
     top: 33%;
     left: -50%;
@@ -179,27 +179,27 @@ body {
     justify-content: center;
     align-items: center;
     background: #ffffff;
-    border: 3px solid #cccccc;
-    color: #cccccc;
+    border: 3px solid #c7c7cc;
+    color: #929297;
     border-radius: 50%;
     z-index: 5;
 }
 
 .form-title {
-    color: #cccccc;
+    color: #c7c7cc;
 }
 
 #progressbar li.active>.progressbar-icons {
-    border: 3px solid #f3eb54;
-    color: #f3eb54;
+    border: 3px solid #ffbe00;
+    color: #ffbe00;
 }
 
 #progressbar li.active>.form-title {
-    color: #f3eb54;
+    color: #ffbe00;
 }
 
 #progressbar li.active::before {
-    background-color: #f3eb54;
+    background-color: #ffbe00;
 }
 
 .form-title {
@@ -268,7 +268,7 @@ body {
     height: 100px;
     min-width: 100px;
     min-height: 100px;
-    background: #f3eb54;
+    background: #ffbe00;
     border-radius: 9px;
     overflow: hidden;
 }
@@ -298,12 +298,12 @@ body {
 }
 
 .input-serch {
-    background-color: #cccccc;
+    background-color: #c7c7cc;
     padding: .7em .1em;
 }
 
 .input-serch {
-    background-color: #cccccc;
+    background-color: #c7c7cc;
     padding: 1em .5em;
     color: #8f8f8f;
 }
@@ -347,11 +347,29 @@ body {
 }
 
 .btn-custom-two {
-    background: #f3eb54;
+    background: #ffbe00;
     color: #000;
 }
 .radio-btn-error {
     color: red;
+}
+.prdouct-off-silver {
+    font-size: 14px;
+    background: silver;
+    padding: 5px 6px;
+    border-radius: 30px;
+}
+
+.prdouct-off-gold {
+    background: #fff9e2;
+    font-size: 14px;
+    padding: 5px 6px;
+    color: #ffcc00;
+    border-radius: 30px;
+}
+.product-box-li {
+    border-bottom: 1px solid #e5e5ea;
+    margin-bottom: 18px;
 }
 .price-offer {
     display: flex;
@@ -451,6 +469,15 @@ body {
 @media only screen and (min-width : 300px) and (max-width : 520px) {
     .form-title {
         font-size: .75rem;
+    }
+    .btn-custom,
+    .btn-custom-two{
+        width: 75%;
+    }
+    .prdouct-off-silver,
+    .prdouct-off-gold ,
+    .prdouct-off {
+        font-size: 11px;
     }
     .card-box{
         -webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.17);
