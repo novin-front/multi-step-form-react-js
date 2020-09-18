@@ -350,7 +350,9 @@ body {
     background: #f3eb54;
     color: #000;
 }
-
+.radio-btn-error {
+    color: red;
+}
 .price-offer {
     display: flex;
     justify-content: center;

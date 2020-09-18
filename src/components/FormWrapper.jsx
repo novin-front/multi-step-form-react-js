@@ -6,16 +6,31 @@ import Registration from './FormSteps/Registration';
 import Logistic from './FormSteps/Logistic';
 
 function FormWrapper(props) {
+    const  stepValidation = (valid) => {
+        if (valid){
+            setContentSteps(prevState =>{
+                return {
+                    ...prevState,
+                    setpsIsValid : valid,
+                }
+            })
+        }
+        console.log("stepValidation",valid);
+
+    }
     // state for forms steps and component steps
      const [ContentSteps,setContentSteps]= useState({
         progress : 1,
+         title: "Product Select",
          Steps :[
-             {id : 1, component :  <ProductSelect key={1} />},
-             {id : 2,component :<Registration key={2}/>},
-             {id : 3,component : <Logistic key={3}/>},
-             {id : 4,component:<Pyment key={4}/>}
+             { id: 1, component: <ProductSelect key={1} validation={stepValidation} />,title :"Product Select"},
+             { id: 2, component: <Registration key={2} validation={stepValidation} />, title : "Registration"},
+             { id: 3, component: <Logistic key={3} validation={stepValidation} />, title: "Logistic"},
+             { id: 4, component: <Pyment key={4} validation={stepValidation} />, title: "pymeny"}
             ],
+        setpsIsValid : true,
     });
+    
     // function for return now steps  
     const setFormSteps = (key)=>{
         const {Steps} = ContentSteps;
@@ -28,26 +43,39 @@ function FormWrapper(props) {
     // set nav steps in form 
     const setProgressBar = (nowStep,key) =>{
         let newStep;
+        const { Steps } = ContentSteps;
         if(key === "next" && (nowStep+1) < 5){
             newStep = ++nowStep; 
         }else if(key === "prev" && (nowStep-1) > 0){
             newStep = --nowStep; 
         }
-       if(newStep !== undefined){
-        setContentSteps((prevState )=>{
-            return {...prevState,
-                    progress : newStep,
+        let title = "";
+        Steps.map((step) => {
+            
+            if (step.id === nowStep) {
+                title = step.title;
+                
             }
+        });
+       if(newStep !== undefined){
+           if (ContentSteps.setpsIsValid){
+               setContentSteps((prevState )=>{
+                    return {...prevState,
+                            progress : newStep,
+                            title
+                    }
 
-        })
+                })
+           }
+        
        }
     }
     // function for render button forms 
     const creatBtnForms = (nowStep)=>{
         let btnObjects = {
-                prev :<button type="button" className="btn btn-custom" onClick={e=>{setProgressBar(ContentSteps.progress,"prev")}}>back</button>,
-                next :<button type="button" className="btn btn-custom" onClick={e=>{setProgressBar(ContentSteps.progress,"next")}}>next</button>,
-                finish :<button type="button" className="btn btn-custom-two">Buy</button>
+                prev :<button type="button" className="btn btn-custom prev-btn" onClick={e=>{setProgressBar(ContentSteps.progress,"prev")}}>back</button>,
+                next :<button type="button" className="btn btn-custom next-btn" onClick={e=>{setProgressBar(ContentSteps.progress,"next")}}>next</button>,
+                finish: <button type="button" className="btn btn-custom-two finished">Buy</button>
         }
         let btnArray = [];
 
@@ -68,8 +96,9 @@ function FormWrapper(props) {
     }
     return (
         <>
-           <Formheader steps={ContentSteps.progress}/>
+            <Formheader steps={{ steps: ContentSteps.progress, title: ContentSteps.title}}/>
           <form>
+              
           <div className="container-row">
                 <div className="card-box">
                     {console.log(ContentSteps)}
@@ -77,6 +106,7 @@ function FormWrapper(props) {
                 </div>
           </div>
             <div className="btn-wrapper">
+                
                 {creatBtnForms(ContentSteps.progress)}
             </div>
 
